@@ -1,0 +1,52 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix ldr: <http://purl.org/NET/ldr/ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix provo: <http://purl.org/net/provenance/ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix l4lod: <http://ns.inria.fr/l4lod/> .
+@prefix ms: <http://purl.org/NET/ms-rights#> .
+@prefix : <http://purl.org/NET/rdflicense/> .
+
+<http://purl.org/NET/rdflicense/ms-commons-byncnd> 
+        a      odrl:Policy ;
+		dct:hasVersion "1.0" ;
+				dct:publisher "Meta-Share" ;
+
+		rdfs:label   "META-SHARE Commons BYNCND" ;
+		   dct:alternative   "MS Commons BYNCND" ;
+	         dct:language <http://www.lexvo.org/page/iso639-3/eng> ;
+		   ms:conditionsOfUse ms:onlyMSMembers, cc:Attribution, ms:academic-nonCommercialUse, ms:noDerivatives, ms:languageEngineeringResearch ;
+		   ms:licenseCategory ms:ACA ;
+		   odrl:permission [
+			odrl:action cc:Reproduction, odrl:extract, odrl:aggregate ;
+			odrl:assignee <http://example.com/MetaShareMembers> ; 
+			odrl:duty [
+				odrl:action cc:Attribution ;
+				] ;
+			odrl:constraint [
+				a odrl:Constraint ;
+				odrl:operator odrl:eq ;
+				odrl:purpose ms:languageEngineeringResearch 
+				] ;
+			odrl:constraint [
+				a odrl:Constraint ;
+				odrl:operator odrl:eq ;
+				odrl:spatial "only at assignee's site"
+				]
+
+			];
+		   odrl:prohibition [
+			odrl:action cc:DerivativeWorks, cc:CommercialUse ;
+			];
+
+		cc:legalcode <http://www.meta-net.eu/meta-share/meta-share-licenses/META-SHARE%20COMMONS_BYNCND%20v1.0.pdf> ;
+		rdfs:seeAlso <http://www.meta-net.eu/meta-share/meta-share-licenses/Tabular%20presentation%20of%20MS%20Commons%20Licences.pdf> . 
+		<http://example.com/MetaShareMembers> a odrl:Group .	
