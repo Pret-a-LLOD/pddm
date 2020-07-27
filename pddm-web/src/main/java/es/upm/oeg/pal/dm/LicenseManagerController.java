@@ -5,6 +5,7 @@
  */
 package es.upm.oeg.pal.dm;
 
+import io.swagger.annotations.Api;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,9 +26,11 @@ import javax.servlet.ServletContext;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
    
 
@@ -35,41 +38,53 @@ import org.springframework.web.bind.annotation.ResponseBody;
         
 
 @Controller
+@Api(tags = "License", value = "License")
 public class LicenseManagerController {
 
-    @Autowired
-    ServletContext context;
+  
 
     static Logger logger = Logger.getLogger(Controller.class);
 
-    boolean GateInitialized = false;
-
-   
+  
+   /*
+    GET /license/   → returns complete list of ids (URLs)
+GET /license/{licensid}
+POST /license/{licensid}
+DELTE /license/{licensid}
+*/
     
-     
-    @ApiOperation(value = "Service to manage licenses")
-   
+    
     @RequestMapping(
-            value = "/getLicenseCompability",
-            consumes = "application/json;charset=UTF-8",
+            value = "/license/",
+            //consumes = "application/json;charset=UTF-8",
             produces= "application/json;charset=UTF-8",
             method = RequestMethod.GET)
     @ResponseBody
-    public String getLicenseCompability(@RequestBody String text) throws Exception {
+    public String getLicenses() throws Exception {
 
-        
-     
-            try {
+        try {
           
-              
-            
+     } catch (Exception e) {
+            logger.error("Error in REST service",e);
+            logger.error(e.getCause().toString());
            
-         
             
+        }
+
+        return "";
+    }
+    
+    @RequestMapping(
+            value = "/license/{id}",
+            //consumes = "application/json;charset=UTF-8",
+            produces= "application/json;charset=UTF-8",
+            method = RequestMethod.GET)
+    @ResponseBody
+    public String getLicense(@PathVariable String id) throws Exception {
+
+        try {
           
-            
-            
-        } catch (Exception e) {
+     } catch (Exception e) {
             logger.error("Error in REST service",e);
             logger.error(e.getCause().toString());
            
@@ -80,13 +95,48 @@ public class LicenseManagerController {
     }
     
     
-      
+     @RequestMapping(
+            value = "/license/{id}",
+            //consumes = "application/json;charset=UTF-8",
+            produces= "application/json;charset=UTF-8",
+            method = RequestMethod.POST)
+    @ResponseBody
+    public String postLicense(@RequestBody String product) throws Exception {
+
+        try {
+          
+     } catch (Exception e) {
+            logger.error("Error in REST service",e);
+            logger.error(e.getCause().toString());
+           
+            
+        }
+
+        return "";
+    }
     
     
+    @RequestMapping(
+            value = "/license/{id}",
+            //consumes = "application/json;charset=UTF-8",
+            produces= "application/json;charset=UTF-8",
+            method = RequestMethod.DELETE)
+    @ResponseBody
+    public String deletetLicense(@PathVariable String id) throws Exception {
+
+        try {
+          
+     } catch (Exception e) {
+            logger.error("Error in REST service",e);
+            logger.error(e.getCause().toString());
+           
+            
+        }
+
+        return "";
+    }
     
-    
-    
-    
+   
     
     
     
@@ -100,6 +150,8 @@ public class LicenseManagerController {
           }
     }
     
+    
+    /*
     @RequestMapping(value="/reInit", method = RequestMethod.GET)
     @ResponseBody
     public void reInit() {
@@ -116,7 +168,7 @@ public class LicenseManagerController {
     public String status() {
         return "UP";
     }
-    
+    */
     
 
   
