@@ -58,7 +58,7 @@ public class LicenseController {
             produces= "application/json;charset=UTF-8",
             method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity getLicenses() throws Exception {
+    public ResponseEntity getLicenses()  {
 
       return ResponseEntity.ok( this.licenseService.getAllLicenses());
   
@@ -70,7 +70,7 @@ public class LicenseController {
             produces= "application/json;charset=UTF-8",
             method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity getLicense(@PathVariable String id) throws Exception {
+    public ResponseEntity getLicense(@PathVariable String id)  {
 
        String res= this.licenseService.getLicense(id);
        if(res!=null){
@@ -102,7 +102,7 @@ public class LicenseController {
             produces= "application/json;charset=UTF-8",
             method = RequestMethod.DELETE)
     @ResponseBody
-    public ResponseEntity  deleteLicense(@PathVariable String id) throws Exception {
+    public ResponseEntity  deleteLicense(@PathVariable String id)  {
 
     
          if(this.licenseService.deleteLicense(id))

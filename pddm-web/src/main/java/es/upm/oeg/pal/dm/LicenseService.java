@@ -7,6 +7,9 @@ package es.upm.oeg.pal.dm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.io.UnsupportedEncodingException;
 
 /**
  *
@@ -24,7 +27,9 @@ public class LicenseService {
      this.licenses=new ArrayList();
     }
     
-    public void addLicense(String license){
+    public void addLicense(String license) throws UnsupportedEncodingException{
+        
+       license= URLEncoder.encode(license, StandardCharsets.UTF_8.toString());
         this.licenses.add(license);
     }
     
