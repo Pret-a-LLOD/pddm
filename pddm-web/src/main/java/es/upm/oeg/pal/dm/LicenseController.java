@@ -25,6 +25,8 @@ import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,19 +41,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @Api(tags = "License", value = "License")
-public class LicenseManagerController {
+public class LicenseController {
 
   
 
     static Logger logger = Logger.getLogger(Controller.class);
 
+    LicenseService licenseService;
   
-   /*
-    GET /license/   → returns complete list of ids (URLs)
-GET /license/{licensid}
-POST /license/{licensid}
-DELTE /license/{licensid}
-*/
+    
     
     
     @RequestMapping(
@@ -60,18 +58,10 @@ DELTE /license/{licensid}
             produces= "application/json;charset=UTF-8",
             method = RequestMethod.GET)
     @ResponseBody
-    public String getLicenses() throws Exception {
+    public ResponseEntity getLicenses() throws Exception {
 
-        try {
-          
-     } catch (Exception e) {
-            logger.error("Error in REST service",e);
-            logger.error(e.getCause().toString());
-           
-            
-        }
-
-        return "";
+      return ResponseEntity.ok( this.licenseService.getAllLicenses());
+  
     }
     
     @RequestMapping(
@@ -80,39 +70,29 @@ DELTE /license/{licensid}
             produces= "application/json;charset=UTF-8",
             method = RequestMethod.GET)
     @ResponseBody
-    public String getLicense(@PathVariable String id) throws Exception {
+    public ResponseEntity getLicense(@PathVariable String id) throws Exception {
 
-        try {
+       String res= this.licenseService.getLicense(id);
+       if(res!=null){
+           return (ResponseEntity.ok(res));
+       }
           
-     } catch (Exception e) {
-            logger.error("Error in REST service",e);
-            logger.error(e.getCause().toString());
-           
-            
-        }
-
-        return "";
+       return new ResponseEntity(HttpStatus.NOT_FOUND);
+    
     }
     
     
      @RequestMapping(
             value = "/license/{id}",
             //consumes = "application/json;charset=UTF-8",
-            produces= "application/json;charset=UTF-8",
+            //produces= "application/json;charset=UTF-8",
             method = RequestMethod.POST)
     @ResponseBody
-    public String postLicense(@RequestBody String product) throws Exception {
+    public ResponseEntity postLicense(@RequestBody String id) throws Exception {
 
-        try {
-          
-     } catch (Exception e) {
-            logger.error("Error in REST service",e);
-            logger.error(e.getCause().toString());
-           
-            
-        }
-
-        return "";
+            this.licenseService.addLicense(id);
+            return new ResponseEntity(HttpStatus.OK);
+     
     }
     
     
@@ -122,18 +102,16 @@ DELTE /license/{licensid}
             produces= "application/json;charset=UTF-8",
             method = RequestMethod.DELETE)
     @ResponseBody
-    public String deletetLicense(@PathVariable String id) throws Exception {
+    public ResponseEntity  deleteLicense(@PathVariable String id) throws Exception {
 
-        try {
-          
-     } catch (Exception e) {
-            logger.error("Error in REST service",e);
-            logger.error(e.getCause().toString());
+    
+         if(this.licenseService.deleteLicense(id))
+             return new ResponseEntity(HttpStatus.OK);
            
             
-        }
+    
 
-        return "";
+        return  new ResponseEntity(HttpStatus.NOT_FOUND);
     }
     
    
@@ -142,8 +120,10 @@ DELTE /license/{licensid}
     
     @PostConstruct
     public void initIt() {
-	  logger.info("Init Models" );
+	  logger.info("Init " );
           try{
+              
+              licenseService = new LicenseService();
            
           }catch(Exception e){
           logger.error("Unable to start service at deploy time. "+e);

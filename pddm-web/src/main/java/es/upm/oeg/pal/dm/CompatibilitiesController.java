@@ -5,7 +5,7 @@
  */
 package es.upm.oeg.pal.dm;
 
-import static es.upm.oeg.pal.dm.LicenseManagerController.logger;
+import static es.upm.oeg.pal.dm.LicenseController.logger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
