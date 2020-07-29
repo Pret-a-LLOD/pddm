@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package es.upm.oeg.pal.dm;
 
 import io.swagger.annotations.Api;
@@ -23,7 +19,7 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
-import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +41,7 @@ public class LicenseController {
 
   
 
-    static Logger logger = Logger.getLogger(Controller.class);
+//    static Logger logger = Logger.getLogger(Controller.class);
 
     LicenseService licenseService;
   
@@ -120,13 +116,13 @@ public class LicenseController {
     
     @PostConstruct
     public void initIt() {
-	  logger.info("Init " );
+	//  logger.info("Init " );
           try{
               
               licenseService = new LicenseService();
            
           }catch(Exception e){
-          logger.error("Unable to start service at deploy time. "+e);
+         // logger.error("Unable to start service at deploy time. "+e);
           }
     }
     

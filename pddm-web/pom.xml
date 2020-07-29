@@ -20,6 +20,29 @@
     </parent>
 
     <dependencies>
+        
+        
+<!-- https://mvnrepository.com/artifact/org.apache.jena/apache-jena-libs -->
+<dependency>
+    <groupId>org.apache.jena</groupId>
+    <artifactId>apache-jena-libs</artifactId>
+    <version>3.16.0</version>
+    <type>pom</type>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.jena/jena-fuseki -->
+<dependency>
+    <groupId>org.apache.jena</groupId>
+    <artifactId>jena-fuseki</artifactId>
+    <version>3.16.0</version>
+    <type>pom</type>
+    <scope>test</scope>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.jena/jena-fuseki-server -->
+<dependency>
+    <groupId>org.apache.jena</groupId>
+    <artifactId>jena-fuseki-server</artifactId>
+    <version>3.16.0</version>
+</dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -28,7 +51,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+    <exclusions>
+        <exclusion>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+    </exclusions>        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -45,11 +73,11 @@
         </dependency>
      
      <!-- https://mvnrepository.com/artifact/log4j/log4j -->
-<dependency>
+<!-- <dependency>
     <groupId>log4j</groupId>
     <artifactId>log4j</artifactId>
     <version>1.2.17</version>
-</dependency>
+</dependency> -->
 
           
                <!-- Swagger 2 dependency -->
@@ -67,6 +95,12 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>2.2.3.RELEASE</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-arq</artifactId>
+            <version>3.16.0</version>
             <type>jar</type>
         </dependency>
     </dependencies>

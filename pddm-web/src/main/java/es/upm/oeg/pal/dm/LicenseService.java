@@ -37,8 +37,8 @@ public class LicenseService {
     }
     
     public List<String> getAllLicenses(){
-        
-        return licenses;
+        return ManagerSPARQL.getNamedGraphs();
+//        return licenses;
     }
     
     public boolean deleteLicense(String id){

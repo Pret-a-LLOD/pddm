@@ -5,7 +5,7 @@
  */
 package es.upm.oeg.pal.dm;
 
-import static es.upm.oeg.pal.dm.LicenseController.logger;
+//import static es.upm.oeg.pal.dm.LicenseController.logger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
@@ -50,8 +50,8 @@ public class CompatibilitiesController {
             
             
         } catch (Exception e) {
-            logger.error("Error in REST service",e);
-            logger.error(e.getCause().toString());
+          //  logger.error("Error in REST service",e);
+          //  logger.error(e.getCause().toString());
            
             
         }
@@ -87,8 +87,8 @@ public class CompatibilitiesController {
             
             
         } catch (Exception e) {
-            logger.error("Error in REST service",e);
-            logger.error(e.getCause().toString());
+        //    logger.error("Error in REST service",e);
+        //    logger.error(e.getCause().toString());
            
             
         }
