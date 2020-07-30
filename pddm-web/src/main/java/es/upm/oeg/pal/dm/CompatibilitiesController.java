@@ -106,8 +106,9 @@ public class CompatibilitiesController {
     
     public boolean creativeCommonCompatibility(String License1, String License2) throws UnsupportedEncodingException{
     
-        License1 = URLDecoder.decode(License1, StandardCharsets.UTF_8.toString());
-        License2 = URLDecoder.decode(License2, StandardCharsets.UTF_8.toString());
+        // Encoded urls
+        //License1 = URLDecoder.decode(License1, StandardCharsets.UTF_8.toString());
+        //License2 = URLDecoder.decode(License2, StandardCharsets.UTF_8.toString());
         
         
         License1= License1.substring(0,License1.length()-4);

@@ -67,6 +67,10 @@ public class ManagerSPARQL {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+
+        
+        
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -80,6 +84,7 @@ public class ManagerSPARQL {
             }
         });
         t1.start();
+        
 
     }
 
@@ -91,7 +96,11 @@ public class ManagerSPARQL {
      * param graph Which graph? One graph per file
      * @param nt Triples in nt format
      */
-    public static void insertTriplesInGraph(String graph, String nt) {
+    public static boolean insertTriplesInGraph(String graph, String nt) {
+        
+        if(nt.equals("")){
+            nt="<http://licencia2> <http://prop> <http://obj> .";
+    }
         try {
             OutputStream fos = new FileOutputStream(FILESTORE);
             String query = "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n";
@@ -104,7 +113,9 @@ public class ManagerSPARQL {
             RDFDataMgr.write(fos, ds, Lang.NQUADS);
         } catch (Exception e) {
             e.printStackTrace();
+            return true;
         }
+        return false;
     }
 
     /**
@@ -157,6 +168,26 @@ public class ManagerSPARQL {
             e.printStackTrace();
         }
         return total;
+    }
+
+    static String getNamedGraphs(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    static boolean deleteGraph(String id) {
+       try {
+            OutputStream fos = new FileOutputStream(FILESTORE);
+            String query = "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n";
+            query += "CLEAR  GRAPH <" + id + "> ";
+            UpdateRequest update = UpdateFactory.create(query);
+            UpdateProcessor qexec = UpdateExecutionFactory.createRemote(update, ENDPOINTUPDATE);
+            qexec.execute();
+            RDFDataMgr.write(fos, ds, Lang.NQUADS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
+        return false;
     }
 
 }
