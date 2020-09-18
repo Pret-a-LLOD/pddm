@@ -116,7 +116,7 @@ public class CompatibilitiesController {
         License2= License2.substring(0,License2.length()-4);
         System.out.println(License2);
         
-        //%2F4.0%2F
+        
         if(License1.equals("https://creativecommons.org/licenses/by/")){
         
             switch(License2) 
