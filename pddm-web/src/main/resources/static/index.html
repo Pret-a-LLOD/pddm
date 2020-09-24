@@ -1,0 +1,106 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=devide-width, initial-scale=1.0">  <!-- para dispositivos móviles !-->
+    <title>PDDM</title>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+     
+        <link rel= "stylesheet" type= "text/css" href= "reset.css">
+        <link rel= "stylesheet" type= "text/css" href= "style.css">
+        <link rel= "stylesheet" type= "text/css" href= "fontello.css">
+
+</head>
+<body>
+<header class="page-header">
+    <div class="header__wrapper clearfix">
+        <h1 class="logo" >PDDM <a href="index.html"></a> <!--img src="../static/images/termitup_logo_oeg.svg" class="logo"--></h1>
+                        
+            <h2 class="subtitle">Licenses</h2>
+
+            <ul id="navbar" class="menu__list">
+                <li><a href="#about" class="header-menu__item">About</a></li>
+                <li><a href="#api" class="header-menu__item">API</a></li>
+                <li><a href="#thanks" class="header-menu__item">Contact</a></li>
+                
+
+            </ul>
+    </div>
+</header>
+
+<main class="intro">
+
+    <!-- INTRO !-->
+    
+
+    
+    <!--DEMO!-->
+    <section id="about" class="intro-services clearfix">
+        <div class="intro-services__wrapper ">
+
+        <h3 class="intro__title">About </h3>
+        <div class="intro__text">
+               
+         
+        </div>
+        </div> 
+    
+    </section>
+    <section id="api" class="api">
+        <div class="intro-services__wrapper ">
+        <h3 class="about__title">API</h3>
+        <div class="about__text">
+        <p>Test this service through link <a href="/swagger-ui.html#">here</a></p> </p>
+        </div>
+        </div>
+    </section>
+    <section id="thanks" class="thanks">
+        <div class="intro-services__wrapper ">
+        <h3 class="contact__title">Contact</h3>
+        <div class="contact__text">
+        <p>This work has been developed by <a href="https://oeg.fi.upm.es/" class="oegweb" target="_blank">Ontology Engineering Group</a> (Universidad Politécnica de Madrid). </p>
+        <p>This service is being developed within Prêt-à-Llod H2020 project (grant agreement No. 825182)</p>
+        <p>Code is availabe at <a href="https://github.com/Pret-a-LLOD/pddm" class="oegweb" target="_blank"> Github repository</a>.</p>
+        </div>
+        </div>
+    </section>
+
+
+<!--CONTACTO!
+    <section class="intro-contact">
+        <h3 class="intro-contact__title"><a href="" target="_blank">Acknowledgements</a></h3>
+    </section>-->
+
+</main>
+<!-- Menú footer!-->
+<footer class="page-footer clearfix">
+        
+        <div class="footer-wrapper"> <!-- este div yo creo que no lo necesito !-->
+            <nav class="footer-menu clearfix">
+            <img src="images/logopal.png" class="logo2">
+            <img src="images/Logo_OEG.gif" class="logo3">
+            <img src="images/fi.jpg" class="logo4">
+            <img src="images/upm.jpg" class="logo5">
+            </nav>
+            <!--<a href="#" class="icon-search">Buscador</a> !-->
+        </div>
+        
+</footer>
+<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
+</body>
+</html>
