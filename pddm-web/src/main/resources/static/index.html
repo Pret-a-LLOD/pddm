@@ -1,106 +1,110 @@
+<!doctype html>
+<html style="min-height: 100%;">
+    <head>
+        <title>Policy Driven Data Manager</title>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="favicon.png">         
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/journal/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>    
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-home"></span></a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="datamodel.html">Data model</a></li>
+                        <li><a href="https://github.com/Pret-a-LLOD/pddm/tree/develop/data/licenses">Dataset</a></li> 
+                        <li ><a href="https://pddm-pal.oeg.fi.upm.es/swagger-ui.html#">Licensing API</a></li> 
+                    </ul>
+                </div>
+            </div>
+        </nav>      
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=devide-width, initial-scale=1.0">  <!-- para dispositivos móviles !-->
-    <title>PDDM</title>
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-     
-        <link rel= "stylesheet" type= "text/css" href= "reset.css">
-        <link rel= "stylesheet" type= "text/css" href= "style.css">
-        <link rel= "stylesheet" type= "text/css" href= "fontello.css">
-
-</head>
-<body>
-<header class="page-header">
-    <div class="header__wrapper clearfix">
-        <h1 class="logo" >PDDM <a href="index.html"></a> <!--img src="../static/images/termitup_logo_oeg.svg" class="logo"--></h1>
-                        
-            <h2 class="subtitle">Licenses</h2>
-
-            <ul id="navbar" class="menu__list">
-                <li><a href="#about" class="header-menu__item">About</a></li>
-                <li><a href="#api" class="header-menu__item">API</a></li>
-                <li><a href="#thanks" class="header-menu__item">Contact</a></li>
-                
-
-            </ul>
-    </div>
-</header>
-
-<main class="intro">
-
-    <!-- INTRO !-->
-    
-
-    
-    <!--DEMO!-->
-    <section id="about" class="intro-services clearfix">
-        <div class="intro-services__wrapper ">
-
-        <h3 class="intro__title">About </h3>
-        <div class="intro__text">
-               
-         
-        </div>
-        </div> 
-    
-    </section>
-    <section id="api" class="api">
-        <div class="intro-services__wrapper ">
-        <h3 class="about__title">API</h3>
-        <div class="about__text">
-        <p>Test this service through link <a href="/swagger-ui.html#">here</a></p> </p>
-        </div>
-        </div>
-    </section>
-    <section id="thanks" class="thanks">
-        <div class="intro-services__wrapper ">
-        <h3 class="contact__title">Contact</h3>
-        <div class="contact__text">
-        <p>This work has been developed by <a href="https://oeg.fi.upm.es/" class="oegweb" target="_blank">Ontology Engineering Group</a> (Universidad Politécnica de Madrid). </p>
-        <p>This service is being developed within Prêt-à-Llod H2020 project (grant agreement No. 825182)</p>
-        <p>Code is availabe at <a href="https://github.com/Pret-a-LLOD/pddm" class="oegweb" target="_blank"> Github repository</a>.</p>
-        </div>
-        </div>
-    </section>
+        <div class="container">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-9">
+                <div class="well">
+                    <h1><img src="images/docrdflicenciado.png" alt="RDFChess" align="left" style="padding-right: 5px">Policy Driven Data Management</h1> 
+                    <p>Data models, data, and services for a policy-driven data management</p> 
+                </div>
 
 
-<!--CONTACTO!
-    <section class="intro-contact">
-        <h3 class="intro-contact__title"><a href="" target="_blank">Acknowledgements</a></h3>
-    </section>-->
+                <section>
+                    <h3 class="about__title">Data models</h3>
+                    <p>We do have data models for you to represent policies for your language resources in RDF. Spec coming soon.</p>
+                </section>
+                <section>
+                    <h3 class="about__title">Dataset</h3>
+                    <p>We do have licenses in a dataset of well-known policies as RDF. Read <b>and</b> contribute <a href="https://pddm-pal.oeg.fi.upm.es/swagger-ui.html#">here</a>!</p>
+                </section>
+                <section>
+                    <h3 class="about__title">Licensing Services</h3>
+                    <p>We do offer you HTTP REST API license-related services. See the spec <a href="https://pddm-pal.oeg.fi.upm.es/swagger-ui.html#">here</a>.</p> </p>
+                </section>
 
-</main>
-<!-- Menú footer!-->
-<footer class="page-footer clearfix">
+
+
+            </div>
+            <div class="col-md-1">
+            </div>
+
+<!--            <div class="panel panel-default"> 
+                <div class="panel-header"><h2>Dataset</h2></div>
+                <div class="panel-body">
+                    <p>Download the original collection in PGN with 2,883,907 games. pgn.tar (2 Gb compressed)</p>
+                    <center><a class="btn btn-success" href="dump/pgn.tar" download><span class="glyphicon glyphicon-download-alt"></span> PGN dataset</a></center>
+                    <p>Download a single RDF dump with 4885 games (whiteplayer's name starting with 'Q') Q.nt.zip (20 Mb, uncompressed 210 Mb)</p>
+                    <center><a class="btn btn-success" href="dump/Q.nt.zip" download><span class="glyphicon glyphicon-download-alt"></span> RDF sample </a></center>
+                    <p>Download the complete RDF games collection with 2,883,907 games. rdfchess.tar (12 Gb compressed)</p>
+                    <center><a class="btn btn-success" href="dump/rdfchess.tar" download><span class="glyphicon glyphicon-download-alt"></span> RDF dataset</a></center>
+                    <a href="data/void.ttl">Metadata</a>
+                </div>
+            </div>
+            
+            <div class="panel panel-default"> 
+                <div class="panel-header"><h2>Querying</h2></div>
+                <div class="panel-body">
+                    You can start browsing linked chess data games!
+                    <center><pre>Sample player: <a href="http://vroddon.linkeddata.es/rdfchess/resource/resource/chessplayer/Bobby+Fischer">http://vroddon.linkeddata.es/rdfchess/resource/resource/chessplayer/Bobby+Fischer</a></pre></center>
+                    Also, you may like querying our SPARQL endpoint at: <center><pre>SPARQL Endpoint: <a href="http://sparqlclient.eionet.europa.eu/sparqlClient.action;?endpoint=http%3A%2F%2Fsalonica.dia.fi.upm.es%3A3030%2FRDFChess%2Fquery&query=SELECT+DISTINCT+%3Fg%0D%0AWHERE+%7B%0D%0A++GRAPH+%3Fg+%7B%0D%0A++++%3Fs+%3Fp+%3Fo%0D%0A++%7D%0D%0A%7D&execute=Execute">http://salonica.dia.fi.upm.es:3030/RDFChess/query</a></pre></center><br/>
+                    <center>Example of SPARQL query: Chess <a href="http://sparqlclient.eionet.europa.eu/sparqlClient.action?endpoint=http%3A%2F%2Fsalonica.dia.fi.upm.es%3A3030%2FRDFChess%2Fquery&query=SELECT+DISTINCT+%3Fgame+%3Fopeningname%0D%0AWHERE+%7B%0D%0A++GRAPH+%3Fg+%7B%0D%0A++++%3Fgame+%3Chttp%3A%2F%2Fpurl.org%2FNET%2Frdfchess%2Fontology%2FhasChessGameOpening%3E+%3Fopening+.%0D%0A++++%3Fopening+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Fopeningname+.%0D%0A++++%3Fgame+%3Chttp%3A%2F%2Fsemanticweb.cs.vu.nl%2F2009%2F11%2Fsem%2FsubEventOf%3E+%3Fround+.%0D%0A++++%3Fround+%3Chttp%3A%2F%2Fsemanticweb.cs.vu.nl%2F2009%2F11%2Fsem%2FsubEventOf%3E+%3Ftournament+.%0D%0A++++%3Ftournament+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Fname+.%0D%0A++++FILTER+%28regex%28str%28%3Fname%29%2C%22orld%22%29+%26%26+%28regex%28str%28%3Fopeningname%29%2C%22King%27s+Gambit%22%29%29%29%0D%0A%09%7D%0D%0A%7D+LIMIT+10&execute=Execute&_sourcePage=o8RG46Oc9Pl09gCYv3jtoAbxL1t6EsecepfKoKCVpNY%3D&__fp=YZWvw142XHY%3D">games</a> in world tournaments where King's Gambit opening was played </center>                    
+                </div>
+            </div>
+        -->
+        </div><!-- end of container -->
         
-        <div class="footer-wrapper"> <!-- este div yo creo que no lo necesito !-->
-            <nav class="footer-menu clearfix">
-            <img src="images/logopal.png" class="logo2">
-            <img src="images/Logo_OEG.gif" class="logo3">
-            <img src="images/fi.jpg" class="logo4">
-            <img src="images/upm.jpg" class="logo5">
-            </nav>
-            <!--<a href="#" class="icon-search">Buscador</a> !-->
-        </div>
-        
+ <footer style="font-size: 12px;position: absolute;left: 0;bottom: 0;height: 100px;width: 100%;overflow: hidden;">
+  <center>
+     <hr>
+       <table>
+        <tr>
+         <td width=50% style="border: 1; padding-right: 2em; padding-left: 2em;">
+           <table>
+              <tr><td width="50px"><img src="images/eu.jpg" width=40px></td>
+             <td>This project has received funding from the European Union's Horizon 2020 research and innovation programme under grant   agreement No 825182: <a href="https://pret-a-llod.eu/">Prêt-à-LLOD</a></td></tr>
+         </table>
+        </td>
+         <td>
+          <table>
+             <tr>
+               <td width="180px"><img src="images/Logo_OEG.gif" width=60px;><img src="images/fi.jpg" width=50px;><img src="images/upm.jpg"   width=60px;></td>
+               <td>Ontology Engineering Group (<a href="http://www.oeg-upm.net">OEG</a>)<br/>Escuela Técnica Superior de Ingenieros Informáticos<br/>Universidad Politécnica de Madrid</td>
+             </tr>
+          </table>
+        </td>
+      </tr>
+   </table>
+   <hr>
+    The content in these pages is published under <a rel="license" href="http://purl.org/NET/rdflicense/cc-by4.0">Creative Commons Attribution 4.0 Unported License</a> 
+  </center>
 </footer>
-<script>
-window.onscroll = function() {myFunction()};
 
-var navbar = document.getElementById("navbar");
-var sticky = navbar.offsetTop;
-
-function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
-}
-</script>
 </body>
 </html>
