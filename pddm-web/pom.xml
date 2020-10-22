@@ -22,51 +22,51 @@
     <dependencies>
         
         <!-- https://mvnrepository.com/artifact/com.github.jsonld-java/jsonld-java -->
-<!--dependency>
-    <groupId>com.github.jsonld-java</groupId>
-    <artifactId>jsonld-java</artifactId>
-    <version>0.13.0</version>
-</dependency-->
+        <!--dependency>
+            <groupId>com.github.jsonld-java</groupId>
+            <artifactId>jsonld-java</artifactId>
+            <version>0.13.0</version>
+        </dependency-->
 
         
         
-<!-- https://mvnrepository.com/artifact/org.apache.jena/apache-jena-libs -->
-<dependency>
-    <groupId>org.apache.jena</groupId>
-    <artifactId>apache-jena-libs</artifactId>
-    <version>3.16.0</version>
-    <type>pom</type>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.apache.jena/jena-fuseki -->
-<dependency>
-    <groupId>org.apache.jena</groupId>
-    <artifactId>jena-fuseki</artifactId>
-    <version>3.16.0</version>
-    <type>pom</type>
+        <!-- https://mvnrepository.com/artifact/org.apache.jena/apache-jena-libs -->
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>apache-jena-libs</artifactId>
+            <version>3.16.0</version>
+            <type>pom</type>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.jena/jena-fuseki -->
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-fuseki</artifactId>
+            <version>3.16.0</version>
+            <type>pom</type>
     
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.apache.jena/jena-fuseki-server -->
-<dependency>
-    <groupId>org.apache.jena</groupId>
-    <artifactId>jena-fuseki-server</artifactId>
-    <version>3.16.0</version>
-</dependency>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.jena/jena-fuseki-server -->
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-fuseki-server</artifactId>
+            <version>3.16.0</version>
+        </dependency>
 
 
-<dependency>
+        <dependency>
             <groupId>org.apache.jena</groupId>
             <artifactId>jena-arq</artifactId>
             <version>3.16.0</version>
             <type>jar</type>
-   </dependency>
+        </dependency>
         
         
         <!-- https://mvnrepository.com/artifact/com.github.jsonld-java/jsonld-java -->
-<dependency>
-    <groupId>com.github.jsonld-java</groupId>
-    <artifactId>jsonld-java</artifactId>
-    <version>0.12.5</version>
-</dependency>
+        <dependency>
+            <groupId>com.github.jsonld-java</groupId>
+            <artifactId>jsonld-java</artifactId>
+            <version>0.12.5</version>
+        </dependency>
 
  
   
@@ -80,12 +80,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter-logging</artifactId>
-                    </exclusion>
-                </exclusions>        
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>        
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -102,15 +102,15 @@
             <scope>provided</scope>
         </dependency>
      
-     <!-- https://mvnrepository.com/artifact/log4j/log4j -->
-<dependency>
-    <groupId>log4j</groupId>
-    <artifactId>log4j</artifactId>
-    <version>1.2.17</version>
-</dependency> 
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency> 
 
           
-               <!-- Swagger 2 dependency -->
+        <!-- Swagger 2 dependency -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -126,7 +126,7 @@
             <artifactId>spring-data-jpa</artifactId>
             <type>jar</type>
         </dependency>
-        
+
     </dependencies>
 
     <build>
