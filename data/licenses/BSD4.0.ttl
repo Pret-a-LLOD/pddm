@@ -26,4 +26,3 @@
                            odrl:duty         [ odrl:action  cc:Notice , cc:ShareAlike , cc:Attribution ] ;
                            odrl:prohibition  [ odrl:action  ldr:endorsement ]
                          ] .
-

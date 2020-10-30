@@ -21,6 +21,14 @@
 
     <dependencies>
         
+        
+          
+        <dependency>
+                <groupId>oeg.licensius</groupId>
+                <artifactId>jodrlapi</artifactId>
+                <version>1.0.3</version>
+        </dependency>
+        
         <!-- https://mvnrepository.com/artifact/com.github.jsonld-java/jsonld-java -->
         <!--dependency>
             <groupId>com.github.jsonld-java</groupId>
@@ -126,6 +134,9 @@
             <artifactId>spring-data-jpa</artifactId>
             <type>jar</type>
         </dependency>
+        
+        
+      
 
     </dependencies>
 
