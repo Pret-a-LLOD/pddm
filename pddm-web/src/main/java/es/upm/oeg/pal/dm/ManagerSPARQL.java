@@ -26,6 +26,7 @@ import org.apache.jena.update.UpdateRequest;
  * This should be enough for our purposes.
  * @author vroddon
  */
+@Deprecated
 public class ManagerSPARQL {
 
     public static String ENDPOINT = "http://localhost:3330/rdflicense/query";

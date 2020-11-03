@@ -1,14 +1,23 @@
 
 package es.upm.oeg.pal.dm;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import es.upm.oeg.pal.dm.store.FusekiConn;
 import io.swagger.annotations.Api;
+import java.io.ByteArrayOutputStream;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import oeg.jodrlapi.helpers.ODRLRDF;
 import oeg.jodrlapi.odrlmodel.Policy;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.riot.Lang;
+import org.apache.jena.riot.RDFDataMgr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -31,9 +40,7 @@ public class LicenseController {
   
 private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.class);
     
-    //    static Logger logger = Logger.getLogger(Controller.class);
-    LicenseService licenseService;
-  
+
     
     
     
@@ -82,23 +89,39 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
             value = "/license/{id}",
             //consumes = "application/json;charset=UTF-8",
             //consumes={"text/turtle", "application/rdf+xml","application/ld+json"},
-            produces= "application/json;charset=UTF-8",
+            produces= "text/turtle;charset=utf-8", //application/json
             method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity getLicense(@PathVariable String id)  {
+    public ResponseEntity getLicense(@PathVariable String id) throws JsonProcessingException  {
 
-        
-        //BOOST1.0
         System.out.println(id);
+        
+        try {
+            id = java.net.URLDecoder.decode(id, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            // not going to happen - value came from JDK's own StandardCharsets
+        }
+        System.out.println("transformed: "+id);
+              
+
        
         if(!FusekiConn.checkIfGraphExists(id)){
             System.out.println("not found");
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         
        
         Model model = FusekiConn.getGraph(id);
-        return (ResponseEntity.ok(model.toString()));
+        
+       
+        Writer writer = new StringWriter();
+
+        model.write(writer, "TTL");
+                
+        String data = writer.toString();        
+//RDFDataMgr.write(s, model, Lang.TTL) ;
+        
+        return new ResponseEntity<>(data,HttpStatus.OK);
        
           
     }
@@ -139,40 +162,22 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
     @ResponseBody
     public ResponseEntity postLicense(@RequestBody String License) throws Exception {
 
-            //this.licenseService.addLicense(id);
+        
             
             
             System.out.println("POST Service");
             LOGGER.info("Post Service");
             try{
-            List<Policy> policies = ODRLRDF.load(License); 
+            //List<Policy> policies = ODRLRDF.load(License); 
             FusekiConn.uploadGraph(License);
             
-            /*
-            System.out.println("Policies Received:" + policies.size());
-        
-        
-            for(Policy pol:policies){
-
-                if(pol.uri == null){
-                    System.out.println("nulo");
-                    continue;
-
-                }
-
-                System.out.println(pol.uri);
-                String rdf=ODRLRDF.getRDF(pol,Lang.TTL);
-                System.out.println(rdf);
-              }
-            */
+           
             }catch(Exception e){
                 System.out.println("Policy Error");
                 return new ResponseEntity(HttpStatus.BAD_REQUEST);
             }
         
-        
-            
-      
+
             return new ResponseEntity(HttpStatus.OK);
      
     }
@@ -186,9 +191,9 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
     @ResponseBody
     public ResponseEntity  deleteLicense(@PathVariable String id)  {
 
-        System.out.println(id);
+         System.out.println(id);
          FusekiConn.deleteGraph(id);
-          return new ResponseEntity(HttpStatus.OK);
+         return new ResponseEntity(HttpStatus.OK);
            
             
     
@@ -203,7 +208,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
 	//  logger.info("Init " );
           try{
               
-              licenseService = new LicenseService();
+              
            
           }catch(Exception e){
          // logger.error("Unable to start service at deploy time. "+e);
@@ -211,24 +216,6 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
     }
     
     
-    /*
-    @RequestMapping(value="/reInit", method = RequestMethod.GET)
-    @ResponseBody
-    public void reInit() {
-         try {
-             
-         } catch (Exception ex) {
-             logger.error(ex);
-         }
-    }
-    
-    
-    @RequestMapping(value ="/status", method = RequestMethod.GET)
-    @ResponseBody
-    public String status() {
-        return "UP";
-    }
-    */
     
 
   

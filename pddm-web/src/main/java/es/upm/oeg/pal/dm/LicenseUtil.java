@@ -25,12 +25,11 @@ public class LicenseUtil {
     
     
     
+    public static void populateAll(String Path){
     
-    public static void main (String [] args){
-    
+    File dir = new File(Path);
         
-        File dir = new File("C:\\Users\\Pablo\\Desktop\\Pret\\pddm\\data\\licenses");
-        
+        System.out.println(dir.getAbsolutePath());
         
         for(File f:dir.listFiles()){
             
@@ -44,6 +43,25 @@ public class LicenseUtil {
         }
         
         FusekiConn.closeConnection();
+    
+    
+    }
+    
+    
+    
+    public static void main (String [] args) throws IOException{
+    
+        if(args.length==0){return;}
+        
+        if(args[0].toLowerCase().equals("delete")){
+           FusekiConn.deleteAll();
+        }
+        
+        else{
+            populateAll(args[0]);
+        
+        }
+        
         
         /*
     

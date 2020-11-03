@@ -15,6 +15,7 @@ import java.io.UnsupportedEncodingException;
  *
  * @author Pablo
  */
+@Deprecated
 public class LicenseService {
     
     

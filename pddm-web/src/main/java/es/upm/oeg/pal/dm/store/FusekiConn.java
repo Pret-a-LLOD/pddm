@@ -35,7 +35,7 @@ public class FusekiConn {
     
     
     private static RDFConnection connection;
-    private static String URL="http://localhost:3030/licencias";
+    private static String URL="http://localhost:3030/licenses";
     
     public static void createConnection(){
         
@@ -152,9 +152,9 @@ public class FusekiConn {
     
      
      
-    public static void deleteGraph(String Graph)  {
+    public static void deleteGraph(String GraphName)  {
 
-         Graph= checkGraphName(Graph);
+        GraphName= checkGraphName(GraphName);
         /*final DatasetGraph dsg = DatasetGraphFactory.wrap(Graph.emptyGraph);
        final DatasetGraph dsgWrapped = new DatasetGraphWrapperStar(dsg);
        final Dataset ds = DatasetFactory.wrap(dsgWrapped);*/
@@ -166,15 +166,16 @@ public class FusekiConn {
         while (it.hasNext()) {
 
             Node n = (Node) it.next();
-            if (!n.toString().equals(Graph)) {
-                continue;
-            }
-            System.out.println("entro");
-            System.out.println(n.toString());
+            if (n.toString().equals(GraphName)) {
+                System.out.println("Deleting "+n.toString());
 
-            connection.delete(n.toString());
-            //dataset.asDatasetGraph().removeGraph(n); // no ha funcionado
-            //dataset.removeNamedModel(n.toString());
+                connection.delete(n.toString());
+                //dataset.asDatasetGraph().removeGraph(n); // no ha funcionado
+                //dataset.removeNamedModel(n.toString());
+                break;
+            }
+           
+            
 
         }
 
@@ -222,8 +223,7 @@ public class FusekiConn {
         
         
         Model model = dataset.getNamedModel(uri);
-        System.out.println(model);
-
+        
         return model;
 
     }
