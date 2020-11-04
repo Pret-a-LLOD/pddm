@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import es.upm.oeg.pal.dm.store.FusekiConn;
 import io.swagger.annotations.Api;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -199,9 +200,25 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
     
     }
     
+    
+    @RequestMapping(
+            value = "/loadDefaultLicenses",
+            //consumes = "application/json;charset=UTF-8",
+            produces= "application/json;charset=UTF-8",
+            method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity  loadDefaults()  {
+
+         LicenseUtil.populateAll(".."+File.separator+ "data"+File.separator+"licenses");
+         return new ResponseEntity(HttpStatus.OK);
+           
+            
+    
+    }
+    
    
     
-    
+    //
     
     @PostConstruct
     public void initIt() {
