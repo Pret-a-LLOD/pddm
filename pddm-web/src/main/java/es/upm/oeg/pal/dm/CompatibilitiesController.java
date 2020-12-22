@@ -1,12 +1,19 @@
 package es.upm.oeg.pal.dm;
 
+import es.upm.oeg.pal.dm.store.FusekiConn;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import org.apache.jena.rdf.model.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -16,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Api(tags = "Compatibility", value = "Compatibility")
 public class CompatibilitiesController {
-    
     
 
     
@@ -28,28 +34,75 @@ public class CompatibilitiesController {
             //produces= "application/json;charset=UTF-8",
             method = RequestMethod.GET)
     @ResponseBody
-    public boolean compatibility(@RequestParam(name="license1", required = true, defaultValue = "L1") String License1, @RequestParam(name="License2", required = true, defaultValue = "L2") String License2) throws Exception {
+    public ResponseEntity compatibility(@RequestParam(name="License1", required = true, defaultValue = "L1") String License1, @RequestParam(name="License2", required = true, defaultValue = "L2") String License2) throws Exception {
 
         
-     
-            try {
-          
+        Model LicenseModel1;
+        Model LicenseModel2;
+        
+        try {
+             LicenseModel1= getLicense(License1);
+        } catch (Exception e) {
+            return new ResponseEntity<>("License 1 not found",HttpStatus.NOT_FOUND);
+
+        }
+        
+        
+         try {
+              LicenseModel2= getLicense(License2);
+        } catch (Exception e) {
+            return new ResponseEntity<>("License 2 not found",HttpStatus.NOT_FOUND);
+        }
+         
+      
+            
               
             
-          return  creativeCommonCompatibility(License1,License2);
+          boolean result= false;
+          
+          // creative commons 
+          if ( (License1.contains("cc-by"))&& (License2.contains("cc-by"))  ){
+            result= creativeCommonCompatibility(License1,License2);
+          }
+          
+          
          
+          if(result) {
+              return new ResponseEntity<>("Compatible Licenses",HttpStatus.OK);
+          }
+          return new ResponseEntity<>("Not Compatible Licenses",HttpStatus.NOT_FOUND);
             
           
             
             
-        } catch (Exception e) {
-          //  logger.error("Error in REST service",e);
-          //  logger.error(e.getCause().toString());
-           
-            
-        }
+        
+        
+        
 
-        return false;
+      
+    }
+    
+    
+    public Model getLicense(String License) throws Exception{
+    
+        System.out.println(License);
+      
+        try {
+            License = java.net.URLDecoder.decode(License, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            // not going to happen - value came from JDK's own StandardCharsets
+        }
+        System.out.println("License to search: "+License);
+              
+        if(!FusekiConn.checkIfGraphExists(License)){
+            System.out.println("Not Found");
+            throw new Exception();
+        }
+        
+       
+        Model model = FusekiConn.getGraph(License);
+
+        return model;
     }
     
     
@@ -65,62 +118,71 @@ public class CompatibilitiesController {
             produces= "application/json;charset=UTF-8",
             method = RequestMethod.GET)
     @ResponseBody
-    public String minimumCompatibilityLicense(@RequestParam(name="license1", required = true, defaultValue = "L1") String License1, @RequestParam(name="License2", required = true, defaultValue = "L2") String License2) throws Exception {
+    public ResponseEntity minimumCompatibilityLicense(@RequestParam(name="license1", required = true, defaultValue = "L1") String License1, @RequestParam(name="License2", required = true, defaultValue = "L2") String License2) throws Exception {
 
         
-     
-            try {
-                
-                
-                
-          
-              
-            
-           
-         
-            
-          
-            
-            
+        Model LicenseModel1;
+        Model LicenseModel2;
+        
+        try {
+             LicenseModel1= getLicense(License1);
         } catch (Exception e) {
-        //    logger.error("Error in REST service",e);
-        //    logger.error(e.getCause().toString());
-           
-            
-        }
+            return new ResponseEntity<>("License 1 not found",HttpStatus.NOT_FOUND);
 
-        return "";
+        }
+        
+        
+         try {
+              LicenseModel2= getLicense(License2);
+        } catch (Exception e) {
+            return new ResponseEntity<>("License 2 not found",HttpStatus.NOT_FOUND);
+        }
+         
+ 
+           // TODO 
+        
+          return new ResponseEntity<>("Not Compatible Licenses",HttpStatus.NOT_FOUND);
+            
     }
     
     
     
+    public String cleanCCLicense(String CCLicense){
+    
+        
+        /*
+        cc-by-sa3.0ro
+        cc-by-sa3.0ve
+        cc-by-sa4.0
+        cc-by1.0
+                to cc-by
+        */
+    
+        String [] lis= CCLicense.split("\\d");
+        
+        return lis[0];
+    
+    }
+    
     
     public boolean creativeCommonCompatibility(String License1, String License2) throws UnsupportedEncodingException{
     
-        // Encoded urls
-        //License1 = URLDecoder.decode(License1, StandardCharsets.UTF_8.toString());
-        //License2 = URLDecoder.decode(License2, StandardCharsets.UTF_8.toString());
+        License1= cleanCCLicense(License1);
+        License2= cleanCCLicense(License2);
         
-        
-        License1= License1.substring(0,License1.length()-4);
-        System.out.println(License1);
-        License2= License2.substring(0,License2.length()-4);
-        System.out.println(License2);
-        
-        
-        if(License1.equals("https://creativecommons.org/licenses/by/")){
+               if(License1.equals("cc-by")){
         
             switch(License2) 
                 { 
-                    case "https://creativecommons.org/licenses/by/": 
+                    case "cc-by": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-sa/": 
+                    case "cc-by-sa": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-nc/": 
+                    case "cc-by-nc": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-nc-sa/": 
+                    case "cc-by-nc-sa": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-nc-sd/": 
+                    case "cc-by-nc-sd": 
                         return false;
                         
                     default: 
@@ -130,19 +192,19 @@ public class CompatibilitiesController {
         
         }
         
-        if(License1.equals("https://creativecommons.org/licenses/by-sa/")){
+        if(License1.equals("cc-by-sa")){
         
             switch(License2) 
                 { 
-                    case "https://creativecommons.org/licenses/by/": 
+                    case "cc-by": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-sa/": 
+                    case "cc-by-sa": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-nc/": 
+                    case "cc-by-nc": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-nc-sa/": 
+                    case "cc-by-nc-sa": 
                         return false;
-                    case "https://creativecommons.org/licenses/by-nc-sd/": 
+                    case "cc-by-nc-sd": 
                         return false;
                         
                     default: 
@@ -152,19 +214,19 @@ public class CompatibilitiesController {
         }
         
         
-        if(License1.equals("https://creativecommons.org/licenses/by-nc/")){
+        if(License1.equals("cc-by-nc")){
         
             switch(License2) 
                 { 
-                    case "https://creativecommons.org/licenses/by/": 
+                    case "cc-by": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-sa/": 
+                    case "cc-by-sa": 
                         return false;
-                    case "https://creativecommons.org/licenses/by-nc/": 
+                    case "cc-by-nc": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-nc-sa/": 
+                    case "cc-by-nc-sa": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-nc-sd/": 
+                    case "cc-by-nc-sd": 
                         return false;
                         
                     default: 
@@ -174,19 +236,19 @@ public class CompatibilitiesController {
         }
         
         
-        if(License1.equals("https://creativecommons.org/licenses/by-nc-sa/")){
+        if(License1.equals("cc-by-nc-sa")){
         
             switch(License2) 
                 { 
-                    case "https://creativecommons.org/licenses/by/": 
+                    case "cc-by": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-sa/": 
+                    case "cc-by-sa": 
                         return false;
-                    case "https://creativecommons.org/licenses/by-nc/": 
+                    case "cc-by-nc": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-nc-sa/": 
+                    case "cc-by-nc-sa": 
                         return true;
-                    case "https://creativecommons.org/licenses/by-nc-sd/": 
+                    case "cc-by-nc-sd": 
                         return false;
                         
                     default: 
@@ -197,19 +259,19 @@ public class CompatibilitiesController {
         }
         
         
-        if(License1.equals("https://creativecommons.org/licenses/by-nc-nd/")){
+        if(License1.equals("cc-by-nc-nd")){
         
             switch(License2) 
                 { 
-                    case "https://creativecommons.org/licenses/by/": 
+                    case "cc-by": 
                         return false;
-                    case "https://creativecommons.org/licenses/by-sa/": 
+                    case "cc-by-sa": 
                         return false;
-                    case "https://creativecommons.org/licenses/by-nc/": 
+                    case "cc-by-nc": 
                         return false;
-                    case "https://creativecommons.org/licenses/by-nc-sa/": 
+                    case "cc-by-nc-sa": 
                         return false;
-                    case "https://creativecommons.org/licenses/by-nc-sd/": 
+                    case "cc-by-nc-sd": 
                         return false;
                         
                     default: 

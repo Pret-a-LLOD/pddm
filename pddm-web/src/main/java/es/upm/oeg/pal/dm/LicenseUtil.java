@@ -48,10 +48,9 @@ public class LicenseUtil {
     }
     
     
+    public static void reinitDatabase(String [] args) throws IOException{
     
-    public static void main (String [] args) throws IOException{
-    
-        if(args.length==0){return;}
+    if(args.length==0){return;}
         
         if(args[0].toLowerCase().equals("delete")){
            FusekiConn.deleteAll();
@@ -61,24 +60,19 @@ public class LicenseUtil {
             populateAll(args[0]);
         
         }
-        
-        
-        /*
     
-        File dir = new File("C:\\Users\\Pablo\\Desktop\\Pret\\pddm\\data\\licenses");
-        
-        List<Policy> allPolicies =new ArrayList();
-        for(File f:dir.listFiles()){
-            System.out.println(f.getName());
-            List<Policy> policies =ODRLRDF.load(f.getAbsolutePath());
-            System.out.println(policies.size());
-            allPolicies.addAll(policies);
-            
-        
-        }
+    }
     
-        System.out.println(allPolicies.get(0).toString());
-       ^*/
+    
+    
+    public static void main (String [] args) throws IOException{
+    
+        
+        String [] as= {"C:\\Users\\Pablo\\Desktop\\Pret\\pddm\\data\\licenses"};
+        
+        reinitDatabase(as);
+        
+      
     
     }
     
