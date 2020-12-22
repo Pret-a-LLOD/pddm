@@ -38,7 +38,7 @@ public class ManagerSPARQL {
 
     //Initialization is done at the beginning, only once
     static {
-        System.out.println("Starting SPARQL server");
+        System.out.println("Starting SPARQL serverxxxx");
         init();
         System.out.println("Server is running");
 
