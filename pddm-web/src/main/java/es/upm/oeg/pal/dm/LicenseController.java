@@ -38,6 +38,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Api(tags = "License", value = "License")
 public class LicenseController {
 
+    
+    
+    
   
 private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.class);
     
@@ -120,7 +123,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
         model.write(writer, "TTL");
                 
         String data = writer.toString();        
-//RDFDataMgr.write(s, model, Lang.TTL) ;
+        //RDFDataMgr.write(s, model, Lang.TTL) ;
         
         return new ResponseEntity<>(data,HttpStatus.OK);
        

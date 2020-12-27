@@ -9,6 +9,7 @@ package es.upm.oeg.pal.dm;
  *
  * @author Pablo
  */
+@Deprecated
 public class License {
 
     private Long id;

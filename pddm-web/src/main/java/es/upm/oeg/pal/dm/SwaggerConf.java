@@ -38,7 +38,7 @@ public class SwaggerConf {
 	          .apiInfo(apiEndPointsInfo());
 	    }
 	 	private ApiInfo apiEndPointsInfo() {
-	        return new ApiInfoBuilder().title("Pret-a-LLOD DM REST API")
+	        return new ApiInfoBuilder().title("Pret-a-LLOD Policy Driven Data Management (PDDM) REST API")
 	            .description("This is the documentation for the REST API FOR DM")
 	            .contact(new Contact("Pablo Calleja Ibáñez & Victor Rodriguez", "http://www.oeg-upm.net/", "pcalleja@fi.upm.es vrodriguez@fi.upm.es"))
 	            .license("Apache 2.0")

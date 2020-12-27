@@ -28,27 +28,31 @@ public class LicenseService {
      ///this.licenses=new ArrayList();
     }
     
+    /*
+    
     public void addLicense(String license) throws UnsupportedEncodingException{
         
        //license= URLEncoder.encode(license, StandardCharsets.UTF_8.toString());
         
-        ManagerSPARQL.insertTriplesInGraph(license, "");
+        //ManagerSPARQL.insertTriplesInGraph(license, "");
        
     }
     
     public String getLicense(String id){
         
-        return ManagerSPARQL.getNamedGraphs(id);
+        //return ManagerSPARQL.getNamedGraphs(id);
        
     }
     
     public List<String> getAllLicenses(){
-        return ManagerSPARQL.getNamedGraphs();
+        //return ManagerSPARQL.getNamedGraphs();
         // return licenses;
     }
     
     public boolean deleteLicense(String id){
         
-        return ManagerSPARQL.deleteGraph(id);
+        //return ManagerSPARQL.deleteGraph(id);
     }
+
+*/
 }
