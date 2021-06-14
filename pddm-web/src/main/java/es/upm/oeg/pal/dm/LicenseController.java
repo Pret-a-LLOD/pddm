@@ -63,30 +63,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
     
     
     
-    /*
-    
-    @POST
-    @Path("/")
-    @Consumes({"text/turtle", "application/rdf+xml","application/ld+json"}) 
-    @Produces("application/json")
-    @ApiOperation(value = "validator", notes = "Returns if a policy is valid, not valid or unknown. Checks the conformance of ODRL Policy expressions with respect to the ODRL Information Model validation requirements. ")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "OK", response = ValidatorResponse.class)
-        ,
-                                @ApiResponse(code = 400, message = "Bad Request")
-        ,
-                                @ApiResponse(code = 415, message = "Unsupported Media Type")})
-    public Response validator(@ApiParam(name = "policy", value = "ODRL policy serialized as RDF Turtle or RDF/XML", required = true) String rdf) {
-        try {
-            ODRLValidator validator = new ODRLValidator();
-            ValidatorResponse vres = validator.validate(rdf);
-            return Response.status(vres.status).entity(vres).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
-        } catch (Exception e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Internal error.").build();
-        }
-    }
-    
-    */
+   
     
     
     @RequestMapping(
@@ -131,32 +108,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
     }
     
     
-     /*
     
-    @POST
-    @Path("/")
-    @Consumes({"text/turtle", "application/rdf+xml","application/ld+json"}) 
-    @Produces("application/json")
-    @ApiOperation(value = "validator",
-    
-    notes = "Returns if a policy is valid, not valid or unknown. Checks the conformance of ODRL Policy expressions with respect to the ODRL Information Model validation requirements. ")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "OK", response = ValidatorResponse.class)
-        ,
-                                @ApiResponse(code = 400, message = "Bad Request")
-        ,
-                                @ApiResponse(code = 415, message = "Unsupported Media Type")})
-    public Response validator(@ApiParam(name = "policy", value = "ODRL policy serialized as RDF Turtle or RDF/XML", required = true) String rdf) {
-        try {
-            ODRLValidator validator = new ODRLValidator();
-            ValidatorResponse vres = validator.validate(rdf);
-            return Response.status(vres.status).entity(vres).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
-        } catch (Exception e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Internal error.").build();
-        }
-    }
-    
-    */
     
      @RequestMapping(
             value = "/license",
@@ -220,8 +172,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
     }
     
    
-    
-    //
+  
     
     @PostConstruct
     public void initIt() {
