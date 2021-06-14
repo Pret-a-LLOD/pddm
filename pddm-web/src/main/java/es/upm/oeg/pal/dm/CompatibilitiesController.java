@@ -11,6 +11,7 @@ import org.apache.jena.rdf.model.Model;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,11 +26,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CompatibilitiesController {
     
 
+   
+    
+    
+   
+ 
     
     
     @ApiOperation(value = "Verifies the compatibility of two licenses")
     @RequestMapping(
-            value = "/compatibility",
+            value = "/compatibilityPair",
             //consumes = "application/json;charset=UTF-8",
             //produces= "application/json;charset=UTF-8",
             method = RequestMethod.GET)
@@ -113,7 +119,7 @@ public class CompatibilitiesController {
    // @ApiOperation(value = "Service to manage licenses")
     @ApiOperation(value = "Get the minimum requirements for the compatibility of two licenses")
     @RequestMapping(
-            value = "/minimumCompatibilityLicense",
+            value = "/minimumCompatibilityPairLicenses",
             //consumes = "application/json;charset=UTF-8",
             produces= "application/json;charset=UTF-8",
             method = RequestMethod.GET)
