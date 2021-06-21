@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <h1>Sample client</h1>
+        <p>This is an example of client of the PDDM. Please see the source code and copy it as you consider.</p>
+
+        <form>
+            <fieldset>
+                <legend>Verify license</legend>
+                <label for="license">License</label>
+                <input id="license" type="text" value="http://purl.org/NET/rdflicense/ms-c-nored-ff"/>
+                <br/>
+                <label for="purpose">Choose a purpose</label>
+                <select id="purpose" name="purpose">
+                    <option value="research">Research</option>
+                    <option value="commercial">Commercial</option>
+                </select>
+                <br/>
+                <label for="institution">Who are you?</label>
+                <select id="institution" name="institution">
+                    <option value="academic">Academic institution or personal</option>
+                    <option value="nonacademic">Non-academic institution</option>
+                </select>
+                <br/>
+                <label for="when">When</label>
+                <input id="when" type="text" value="01/01/2021"/>
+                
+            </fieldset>
+        </form>
+        <button onclick="verifyDS()">Verify</button>
+
+        <script>
+            async function verifyDS()
+            {
+                console.log("Verifying access to Dataset");
+                var url = "authorizeDS";
+                
+                var einstitution = document.getElementById("institution");
+                var epurpose = document.getElementById("purpose");
+                var sbody = {};
+                sbody.purpose = epurpose.value;                
+                sbody.institution = einstitution.value;                
+                
+           /*     {
+  "academic": true,
+  "endDate": "string",
+  "initDate": "string",
+  "license": "string",
+  "purpose": "string"
+}*/
+                
+                const response = await fetch(url, {method: 'POST', body: sbody, headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}});
+                const jr = await response.json();                
+            }
+        </script>
+
+    </body>
+</html>

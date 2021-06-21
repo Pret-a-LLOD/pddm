@@ -1,61 +1,61 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package es.upm.oeg.pal.dm.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
+ * Request for authorization from DSpaces. This should be represented with a
+ * ODRL request. Temporary solution.
  *
- * @author Pablo
+ * @author Pablo, vroddon
  */
 public class DSAuth {
-    
-    private String Purpose;
-    private String InitDate;
-    private String EndDate;
-    private Boolean Academic;
-    private String License;
+
+    private String license;
+    private String institution;
+    private String purpose;
+    private String initDate;
+    private String endDate;
+
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
+    }
+
+    public String getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(String institution) {
+        this.institution = institution;
+    }
 
     public String getPurpose() {
-        return Purpose;
+        return purpose;
     }
 
-    public void setPurpose(String Purpose) {
-        this.Purpose = Purpose;
-    }
-
-    public String getInitDate() {
-        return InitDate;
-    }
-
-    public void setInitDate(String InitDate) {
-        this.InitDate = InitDate;
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
     }
 
     public String getEndDate() {
-        return EndDate;
+        return endDate;
     }
 
-    public void setEndDate(String EndDate) {
-        this.EndDate = EndDate;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
-    public Boolean getAcademic() {
-        return Academic;
+    public String toString() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonString = mapper.writeValueAsString(this);
+             return jsonString;
+        } catch (Exception e) {
+            return "";
+        }
     }
 
-    public void setAcademic(Boolean Academic) {
-        this.Academic = Academic;
-    }
-
-    public String getLicense() {
-        return License;
-    }
-
-    public void setLicense(String License) {
-        this.License = License;
-    }
-    
-    
 }
