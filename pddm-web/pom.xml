@@ -12,33 +12,23 @@
         
     </properties>
     
-       <parent>
+    <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.5.RELEASE</version>
-        <relativePath/>
+        <version>2.5.1</version>
     </parent>
 
     <dependencies>
-          
-        <dependency>
-                <groupId>oeg.licensius</groupId>
-                <artifactId>jodrlapi</artifactId>
-                <version>1.0.3</version>
+         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-<!--        <dependency>
-                <groupId>oeg.licensius</groupId>
-                <artifactId>licensius-core</artifactId>
-                <version>2.02</version>
-        </dependency> -->
-        
-        <!-- https://mvnrepository.com/artifact/com.github.jsonld-java/jsonld-java -->
-        <!--dependency>
-            <groupId>com.github.jsonld-java</groupId>
-            <artifactId>jsonld-java</artifactId>
-            <version>0.13.0</version>
-        </dependency-->
 
+        <dependency>
+            <groupId>oeg.licensius</groupId>
+            <artifactId>jodrlapi</artifactId>
+            <version>1.0.3</version>
+        </dependency>
         
         
         <!-- https://mvnrepository.com/artifact/org.apache.jena/apache-jena-libs -->
@@ -88,30 +78,8 @@
             <artifactId>jackson-databind</artifactId>
     
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>        
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
+        
+        
      
         <!-- https://mvnrepository.com/artifact/log4j/log4j -->
         <dependency>
@@ -138,8 +106,7 @@
             <type>jar</type>
         </dependency>
         
-        
-      
+    
 
     </dependencies>
 
