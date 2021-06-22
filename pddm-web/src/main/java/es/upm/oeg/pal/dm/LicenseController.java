@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import es.upm.oeg.pal.dm.store.FusekiConn;
+import es.upm.oeg.pal.dm.store.LicenseIO;
 import io.swagger.annotations.Api;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -85,22 +86,9 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
         System.out.println("transformed: "+id);
               
 
+        String data = LicenseIO.getLicenseFromId(id);
        
-        if(!FusekiConn.checkIfGraphExists(id)){
-            System.out.println("not found");
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        
-       
-        Model model = FusekiConn.getGraph(id);
-        
-       
-        Writer writer = new StringWriter();
 
-        model.write(writer, "TTL");
-                
-        String data = writer.toString();        
-        //RDFDataMgr.write(s, model, Lang.TTL) ;
         
         return new ResponseEntity<>(data,HttpStatus.OK);
        

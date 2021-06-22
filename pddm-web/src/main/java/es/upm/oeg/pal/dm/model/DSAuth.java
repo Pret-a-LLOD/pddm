@@ -58,4 +58,18 @@ public class DSAuth {
         }
     }
 
+    /**
+     * @return the initDate
+     */
+    public String getInitDate() {
+        return initDate;
+    }
+
+    /**
+     * @param initDate the initDate to set
+     */
+    public void setInitDate(String initDate) {
+        this.initDate = initDate;
+    }
+
 }
