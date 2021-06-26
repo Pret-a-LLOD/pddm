@@ -10,6 +10,12 @@ import vroddon.rdf.URLUtils;
  */
 public class Authorizer {
     
+    public static void main(String args[])
+    {
+        System.out.println("test de authorizer");
+    }
+    
+    
     public static DatasetAuthResponse authorize(DatasetAuthRequest req)
     {
         String licenseid = req.getLicense();
