@@ -3,6 +3,7 @@ package es.upm.oeg.pal.dm;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import es.upm.oeg.pal.dm.model.DatasetAuthRequest;
 import es.upm.oeg.pal.dm.model.DatasetAuthResponse;
+import es.upm.oeg.pal.dm.store.Authorizer;
 import es.upm.oeg.pal.dm.store.LicenseIO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import vroddon.rdf.URLUtils;
 
 /**
  *
@@ -35,12 +37,7 @@ public class AuthorizationController {
     @ResponseBody
     public String dspacesAuth(@RequestBody DatasetAuthRequest areq)  {
         System.out.println("We are about to authorize!");
-        String licenseid = areq.getLicense();
-        DatasetAuthResponse r = new DatasetAuthResponse();
-        r.setExplanation("ok");
-//        String rdf = LicenseIO.getLicenseFromId(licenseid);
-        String explanation =  "I received the License  "+ areq.getLicense() + " for "+ areq.getPurpose()+"";
-        r.setExplanation(explanation);
+        DatasetAuthResponse r = Authorizer.authorize(areq);
         return r.toString();
     }
     
