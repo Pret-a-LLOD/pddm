@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  * @author Pablo, vroddon
  */
-public class DSAuth {
+public class DatasetAuthRequest {
 
     private String license;
     private String institution;
@@ -48,16 +48,6 @@ public class DSAuth {
         this.endDate = endDate;
     }
 
-    public String toString() {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            String jsonString = mapper.writeValueAsString(this);
-             return jsonString;
-        } catch (Exception e) {
-            return "";
-        }
-    }
-
     /**
      * @return the initDate
      */
@@ -70,6 +60,16 @@ public class DSAuth {
      */
     public void setInitDate(String initDate) {
         this.initDate = initDate;
+    }
+
+    public String toString() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonString = mapper.writeValueAsString(this);
+             return jsonString;
+        } catch (Exception e) {
+            return "";
+        }
     }
 
 }

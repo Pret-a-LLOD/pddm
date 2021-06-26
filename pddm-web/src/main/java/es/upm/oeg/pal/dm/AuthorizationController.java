@@ -1,7 +1,8 @@
 package es.upm.oeg.pal.dm;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import es.upm.oeg.pal.dm.model.DSAuth;
+import es.upm.oeg.pal.dm.model.DatasetAuthRequest;
+import es.upm.oeg.pal.dm.model.DatasetAuthResponse;
 import es.upm.oeg.pal.dm.store.LicenseIO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,17 +30,19 @@ public class AuthorizationController {
     @RequestMapping(
             value = "/authorizeDS",
             consumes = "application/json;charset=UTF-8",
-            produces= "application/text;charset=UTF-8",
+            produces= "application/json;charset=UTF-8",
             method = RequestMethod.POST)
     @ResponseBody
-    public String dspacesAuth(@RequestBody DSAuth DsAuth)  {
-        String licenseid = DsAuth.getLicense();
-        String rdf = LicenseIO.getLicenseFromId(licenseid);
-        return "I received the License  "+ DsAuth.getLicense() + " for "+ DsAuth.getPurpose();
+    public String dspacesAuth(@RequestBody DatasetAuthRequest areq)  {
+        System.out.println("We are about to authorize!");
+        String licenseid = areq.getLicense();
+        DatasetAuthResponse r = new DatasetAuthResponse();
+        r.setExplanation("ok");
+//        String rdf = LicenseIO.getLicenseFromId(licenseid);
+        String explanation =  "I received the License  "+ areq.getLicense() + " for "+ areq.getPurpose()+"";
+        r.setExplanation(explanation);
+        return r.toString();
     }
-    
-       
-    
     
     
     

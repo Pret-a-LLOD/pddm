@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <style>
+    label
+    {
+        width:150px; 
+        display: inline-block;
+    }
+        </style>
+    </head>
+        
     <body>
 
         <h1>Sample client</h1>
         <p>This is an example of client of the PDDM. Please see the source code and copy it as you consider.</p>
 
         <form>
-            <fieldset>
+            <fieldset style="width:600px">
                 <legend>Verify license</legend>
                 <label for="license">License</label>
-                <input id="license" type="text" value="http://purl.org/NET/rdflicense/ms-c-nored-ff"/>
+                <input id="license" size=50 type="text" value="http://purl.org/NET/rdflicense/ms-c-nored-ff"/>
                 <br/>
                 <label for="purpose">Choose a purpose</label>
                 <select id="purpose" name="purpose">
@@ -41,6 +51,10 @@
                 var sbody = {};
                 sbody.purpose = epurpose.value;                
                 sbody.institution = einstitution.value;                
+                sbody.license = "-";                
+                sbody.endDate = "-";                
+                sbody.initDate = "-";    
+                console.log(JSON.stringify(sbody));
                 
            /*     {
   "academic": true,
@@ -50,7 +64,7 @@
   "purpose": "string"
 }*/
                 
-                const response = await fetch(url, {method: 'POST', body: sbody, headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}});
+                const response = await fetch(url, {method: 'POST', body: JSON.stringify(sbody), headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}});
                 const jr = await response.json();                
             }
         </script>
