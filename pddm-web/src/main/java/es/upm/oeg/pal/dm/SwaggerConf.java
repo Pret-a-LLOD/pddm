@@ -39,7 +39,7 @@ public class SwaggerConf {
 	    }
 	 	private ApiInfo apiEndPointsInfo() {
 	        return new ApiInfoBuilder().title("Pret-a-LLOD Policy Driven Data Management (PDDM) REST API")
-	            .description("This is the documentation for the REST API FOR DM")
+	            .description("This is the documentation for the HTTP REST API for the Policy Driven DAta Management. This HTTP REST API based on <a href=\"https://github.com/oeg-upm/licensius/tree/master/jodrlapi\">JODRLAPI</a>.<br/>You may want to see a sample Javascript <a href=\"client.html\">client</a> in in this link (see the source code).")
 	            .contact(new Contact("Pablo Calleja Ibáñez & Victor Rodriguez", "http://www.oeg-upm.net/", "pcalleja@fi.upm.es vrodriguez@fi.upm.es"))
 	            .license("Apache 2.0")
 	            .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")

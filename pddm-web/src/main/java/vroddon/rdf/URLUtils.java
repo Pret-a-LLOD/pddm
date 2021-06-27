@@ -46,7 +46,7 @@ public class URLUtils {
                 conn = (HttpURLConnection) oc;
             }
             conn.setRequestProperty("Accept", acceptHeaderValue);
-            conn.setReadTimeout(5000);
+            conn.setReadTimeout(8000);
             int status = conn.getResponseCode();
             if (status != HttpURLConnection.HTTP_OK) {
                 if (status == HttpURLConnection.HTTP_MOVED_TEMP
