@@ -11,7 +11,7 @@ import es.upm.oeg.pal.dm.store.Authorizer;
  */
 public class AuthorizerTest {
     
-   /* @Test
+    @Test
     public void testSimple() {    
         System.out.println("Simple auth rquest");
         DatasetAuthRequest req = new DatasetAuthRequest();         
@@ -20,14 +20,25 @@ public class AuthorizerTest {
         req.setInstitution("research");
         DatasetAuthResponse resp = Authorizer.authorize(req);
         assertEquals(resp.isAuthorized(), true);          
-    }    */
+    }    
 
     @Test
-    public void testMetashare() {    
-        System.out.println("Metashare auth rquest");
+    public void testMetashare1() {    
+        System.out.println("Metashare auth request1");
         DatasetAuthRequest req = new DatasetAuthRequest();         
         req.setLicense("http://purl.org/NET/rdflicense/ms-c-nored-ff");
         req.setPurpose("commercial");
+        req.setInstitution("research");
+        DatasetAuthResponse resp = Authorizer.authorize(req);
+        assertEquals(resp.isAuthorized(), false);          
+    }    
+
+    @Test
+    public void testMetashare2() {    
+        System.out.println("Metashare auth request2");
+        DatasetAuthRequest req = new DatasetAuthRequest();         
+        req.setLicense("http://purl.org/NET/rdflicense/ms-c-nored-ff");
+        req.setPurpose("research");
         req.setInstitution("research");
         DatasetAuthResponse resp = Authorizer.authorize(req);
         assertEquals(resp.isAuthorized(), true);          
