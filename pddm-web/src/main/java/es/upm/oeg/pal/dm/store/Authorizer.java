@@ -5,6 +5,7 @@ import es.upm.oeg.pal.dm.model.DatasetAuthResponse;
 import java.net.URI;
 import java.util.List;
 import oeg.jodrlapi.helpers.ODRLRDF;
+import oeg.jodrlapi.helpers.RDFUtils;
 import oeg.jodrlapi.odrlmodel.Action;
 import oeg.jodrlapi.odrlmodel.Constraint;
 import oeg.jodrlapi.odrlmodel.Policy;
@@ -59,7 +60,7 @@ public class Authorizer {
                 if (ok==false)
                 {
                     r.setAuthorized(false);
-                    r.setExplanation("Not authorized because of the " + constraint.value);
+                    r.setExplanation("Not authorized because of the " + RDFUtils.getLastPartOfUri(constraint.value));
                 }
             }
         }
