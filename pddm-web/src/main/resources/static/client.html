@@ -61,17 +61,18 @@
                 
                 var einstitution = document.getElementById("institution");
                 var epurpose = document.getElementById("purpose");
+                var elicense = document.getElementById("license");
                 var sbody = {};
                 sbody.purpose = epurpose.value;                
                 sbody.institution = einstitution.value;                
-                sbody.license = "-";                
+                sbody.license = elicense.value;;                
                 sbody.endDate = "-";                
                 sbody.initDate = "-";    
                 console.log(JSON.stringify(sbody));
                 const response = await fetch(url, {method: 'POST', body: JSON.stringify(sbody), headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}});
                 const jr = await response.json();               
                 var elemauth = document.getElementById("idauth");
-                elemauth.innerHTML = jr.isAuth;
+                elemauth.innerHTML = jr.authorized;
                 var elemexplanation = document.getElementById("idexplanation");
                 elemexplanation.innerHTML = jr.explanation;
             }

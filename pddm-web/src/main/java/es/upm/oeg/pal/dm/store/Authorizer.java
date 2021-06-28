@@ -56,24 +56,36 @@ public class Authorizer {
             for(Constraint constraint : constraints)
             {
                 boolean ok = evaluate(req, constraint);
+                if (ok==false)
+                {
+                    r.setAuthorized(false);
+                    r.setExplanation("Not authorized because of the " + constraint.value);
+                }
             }
         }
 
 
-        r.setExplanation("ok");
+   //     r.setExplanation("ok");
 //        String rdf = LicenseIO.getLicenseFromId(paramlicense);
-        String explanation = "I received the License  " + req.getLicense() + " for " + req.getPurpose() + "";
+  //      String explanation = "I received the License  " + req.getLicense() + " for " + req.getPurpose() + "";
 
-        r.setExplanation(explanation);
+  //      r.setExplanation(explanation);
         return r;
     }
     
     public static boolean evaluate(DatasetAuthRequest req, Constraint c)
     {
+        boolean ok = true;
         System.out.println(c.toString());
-        
-        
-        return true;
+        if (c.value.contains("purpose") && c.rightOperand.contains("languageEngineeringResearch"))
+        {
+            ok = false;
+            if (req.getPurpose().contains("research") || req.getPurpose().contains("languageEngineeringResearch"))
+            {
+                ok=true;
+            }
+        }
+        return ok;
     }
 
     public static String getLicenseRDF(String paramlicense) {
