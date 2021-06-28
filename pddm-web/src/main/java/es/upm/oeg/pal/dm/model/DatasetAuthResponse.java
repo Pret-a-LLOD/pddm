@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class DatasetAuthResponse {
     
-    private boolean isAuth = false;
+    private boolean authorized = false;
     private String explanation = "";
     
     public String toString() {
@@ -22,17 +22,17 @@ public class DatasetAuthResponse {
     }
 
     /**
-     * @return the isAuth
+     * @return the authorized
      */
-    public boolean isIsAuth() {
-        return isAuth;
+    public boolean isAuthorized() {
+        return authorized;
     }
 
     /**
-     * @param isAuth the isAuth to set
+     * @param authorized the authorized to set
      */
-    public void setIsAuth(boolean isAuth) {
-        this.isAuth = isAuth;
+    public void setAuthorized(boolean authorized) {
+        this.authorized = authorized;
     }
 
     /**

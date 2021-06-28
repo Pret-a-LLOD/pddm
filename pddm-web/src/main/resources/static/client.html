@@ -13,11 +13,11 @@
     <body>
 
         <h1>Sample client</h1>
-        <p>This is an example of client of the PDDM. Please see the source code and copy it as you consider.</p>
+        <p>This is an example of client of the <a href="https://pddm-pal.oeg.fi.upm.es/swagger-ui.html#">PDDM</a>. Please see the source code and copy it as you consider.</p>
 
         <form>
             <fieldset style="width:600px">
-                <legend>Verify license</legend>
+                <legend>Verify license request</legend>
                 <label for="license">License</label>
                 <input id="license" size=50 type="text" value="http://purl.org/NET/rdflicense/ms-c-nored-ff"/>
                 <br/>
@@ -38,7 +38,20 @@
                 
             </fieldset>
         </form>
-        <button onclick="verifyDS()">Verify</button>
+    <center><button onclick="verifyDS()" style="margin:20px;">Verify</button></center>
+        <form>
+            <fieldset style="width:600px">
+                <legend>Verify license response</legend>
+                <label>Authorized</label>
+                <label id="idauth">No</label>
+                <br/>
+                <label>Reason</label>
+                <label id="idexplanation"></label>
+                
+            </fieldset>
+        </form>
+                
+        
 
         <script>
             async function verifyDS()
@@ -55,17 +68,12 @@
                 sbody.endDate = "-";                
                 sbody.initDate = "-";    
                 console.log(JSON.stringify(sbody));
-                
-           /*     {
-  "academic": true,
-  "endDate": "string",
-  "initDate": "string",
-  "license": "string",
-  "purpose": "string"
-}*/
-                
                 const response = await fetch(url, {method: 'POST', body: JSON.stringify(sbody), headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}});
-                const jr = await response.json();                
+                const jr = await response.json();               
+                var elemauth = document.getElementById("idauth");
+                elemauth.innerHTML = jr.isAuth;
+                var elemexplanation = document.getElementById("idexplanation");
+                elemexplanation.innerHTML = jr.explanation;
             }
         </script>
 
