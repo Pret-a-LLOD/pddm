@@ -2,24 +2,13 @@
 package es.upm.oeg.pal.dm;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import es.upm.oeg.pal.dm.store.FusekiConn;
 import es.upm.oeg.pal.dm.store.LicenseIO;
 import io.swagger.annotations.Api;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
-import java.io.Writer;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import javax.annotation.PostConstruct;
-import oeg.jodrlapi.helpers.ODRLRDF;
-import oeg.jodrlapi.odrlmodel.Policy;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.riot.Lang;
-import org.apache.jena.riot.RDFDataMgr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

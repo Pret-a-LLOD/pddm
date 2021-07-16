@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package es.upm.oeg.pal.dm;
 
 
@@ -40,7 +35,6 @@ public class SwaggerConf {
 	 	private ApiInfo apiEndPointsInfo() {
 	        return new ApiInfoBuilder().title("Pret-a-LLOD Policy Driven Data Management (PDDM) REST API")
 	            .description("This is the documentation for the HTTP REST API for the Policy Driven DAta Management. This HTTP REST API based on <a href=\"https://github.com/oeg-upm/licensius/tree/master/jodrlapi\">JODRLAPI</a>.<br/>You may want to see a sample Javascript <a href=\"client.html\">client</a> in in this link (see the source code).")
-	        //    .contact(new Contact("Ontology Engineering Group - Universidad Politécnica de Madrid", "http://www.oeg-upm.net/", "pcalleja@fi.upm.es vrodriguez@fi.upm.es"))
 	            .license("Apache 2.0")
 	            .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
 	            .version("1.0.0")
