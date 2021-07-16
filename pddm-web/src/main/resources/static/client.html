@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+    label
+    {
+        width:150px; 
+        display: inline-block;
+    }
+        </style>
+    </head>
+        
+    <body>
+
+        <h1>Sample client</h1>
+        <p>This is an example of client of the <a href="https://pddm-pal.oeg.fi.upm.es/swagger-ui.html#">PDDM</a>. Please see the source code and copy it as you consider.</p>
+
+        <form>
+            <fieldset style="width:600px">
+                <legend>Verify license request</legend>
+                <label for="license">License</label>
+                <input id="license" size=50 type="text" value="http://purl.org/NET/rdflicense/ms-c-nored-ff"/>
+                <br/>
+                <label for="purpose">Choose a purpose</label>
+                <select id="purpose" name="purpose">
+                    <option value="research">Research</option>
+                    <option value="commercial">Commercial</option>
+                </select>
+                <br/>
+                <label for="institution">Who are you?</label>
+                <select id="institution" name="institution">
+                    <option value="academic">Academic institution or personal</option>
+                    <option value="nonacademic">Non-academic institution</option>
+                </select>
+                <br/>
+                <label for="when">When</label>
+                <input id="when" type="text" value="01/01/2021"/>
+                
+            </fieldset>
+        </form>
+    <center><button onclick="verifyDS()" style="margin:20px;">Verify</button></center>
+        <form>
+            <fieldset style="width:600px">
+                <legend>Verify license response</legend>
+                <label>Authorized</label>
+                <label id="idauth">No</label>
+                <br/>
+                <label>Reason</label>
+                <label id="idexplanation" style="width:450px; display: inline-block;"></label>
+                
+            </fieldset>
+        </form>
+                
+        
+
+        <script>
+            async function verifyDS()
+            {
+                console.log("Verifying access to Dataset");
+                var url = "authorizeDS";
+                
+                var einstitution = document.getElementById("institution");
+                var epurpose = document.getElementById("purpose");
+                var elicense = document.getElementById("license");
+                var sbody = {};
+                sbody.purpose = epurpose.value;                
+                sbody.institution = einstitution.value;                
+                sbody.license = elicense.value;;                
+                sbody.endDate = "-";                
+                sbody.initDate = "-";    
+                console.log(JSON.stringify(sbody));
+                const response = await fetch(url, {method: 'POST', body: JSON.stringify(sbody), headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}});
+                const jr = await response.json();               
+                var elemauth = document.getElementById("idauth");
+                elemauth.innerHTML = jr.authorized;
+                var elemexplanation = document.getElementById("idexplanation");
+                elemexplanation.innerHTML = jr.explanation;
+            }
+        </script>
+
+    </body>
+</html>
