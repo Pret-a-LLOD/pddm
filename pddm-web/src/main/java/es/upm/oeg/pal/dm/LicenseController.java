@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +38,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
 
     
     
-    
+    @CrossOrigin
     @RequestMapping(
             value = "/license/",
             //consumes = "application/json;charset=UTF-8",
@@ -86,8 +87,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
     
     
     
-    
-     @RequestMapping(
+    @RequestMapping(
             value = "/license",
             consumes = {"text/turtle;charset=UTF-8", "application/rdf+xml;charset=UTF-8","application/ld+json;charset=UTF-8"},
             produces= "application/json;charset=UTF-8",

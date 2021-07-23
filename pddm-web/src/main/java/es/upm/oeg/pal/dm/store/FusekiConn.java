@@ -236,21 +236,18 @@ public class FusekiConn {
         return uri;
     }
 
+    /**
+     * List with strings deisgnating every named graph.
+     */
     public static List<String> getAllGraphs() {
         FusekiConn.createConnection();
-
         List<String> graphs = new ArrayList();
         Dataset dataset = connection.fetchDataset(); //DatasetFactory.create() ;
-
         Iterator s = dataset.listNames();
         while (s.hasNext()) {
-
             String ss = (String) s.next();
             Model model = dataset.getNamedModel(ss);
-            //System.out.println(ss);
-            //System.out.println(getGraphName(model));
             graphs.add(ss);
-
         }
         return graphs;
     }
