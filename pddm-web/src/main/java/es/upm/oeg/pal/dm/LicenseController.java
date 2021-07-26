@@ -28,15 +28,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Api(tags = "License", value = "License")
 public class LicenseController {
-
-    
-    
     
   
 private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.class);
-    
-
-    
     
     @CrossOrigin
     @RequestMapping(
@@ -46,7 +40,6 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
             method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity getLicenses()  {
-
       return ResponseEntity.ok( FusekiConn.getAllGraphs());
   
     }
@@ -56,7 +49,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
     
    
     
-    
+    @CrossOrigin
     @RequestMapping(
             value = "/license/{id}",
             //consumes = "application/json;charset=UTF-8",
@@ -86,7 +79,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
     }
     
     
-    
+    @CrossOrigin
     @RequestMapping(
             value = "/license",
             consumes = {"text/turtle;charset=UTF-8", "application/rdf+xml;charset=UTF-8","application/ld+json;charset=UTF-8"},
@@ -132,7 +125,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.c
     
     }
     
-    
+    @CrossOrigin
     @RequestMapping(
             value = "/loadDefaultLicenses",
             //consumes = "application/json;charset=UTF-8",
