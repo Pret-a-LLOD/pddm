@@ -7,6 +7,7 @@
 @prefix ns7: <https://dalicc.net/node/> .
 
 <https://dalicc.net/license-library/AttributionNoncommercial30Azerbaijan> a ns1:Set ;
+    <http://purl.org/dc/terms/identifier> "CCBYNC-3.0-AZ" ;
     ns6:jurisdiction <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Azerbaijan> ;
     ns6:legalcode <https://creativecommons.org/licenses/by-nc/3.0/az/legalcode> ;
     ns1:permission [ a ns1:Permission ;

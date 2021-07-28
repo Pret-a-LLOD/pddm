@@ -6,6 +6,7 @@
 @prefix ns6: <https://dalicc.poolparty.biz/DALICC/> .
 
 <https://dalicc.net/license-library/AcademicFreeLicense30> a ns1:Set ;
+    <http://purl.org/dc/terms/identifier> "AFL-3.0" ;
     ns3:jurisdiction ns6:worldwide ;
     ns1:permission [ a ns1:Permission ;
             ns1:action ns1:derive,
