@@ -103,6 +103,7 @@ public class Authorizer {
             } else {
                 paramlicense = "https://raw.githubusercontent.com/Pret-a-LLOD/pddm/develop/data/licenses/" + paramlicense;
                 urilicense = new URI(paramlicense + ".ttl");
+                urilicense = getFinalURL(urilicense.toURL()).toURI();
                 rdf = IOUtils.toString(urilicense, "UTF-8");
             }
         } catch (Exception e1) {
@@ -117,6 +118,7 @@ public class Authorizer {
                     paramlicense = "https://raw.githubusercontent.com/Pret-a-LLOD/pddm/develop/data/licenses/" + id;
                     urilicense = new URI(paramlicense + ".ttl");
                 }
+                urilicense = getFinalURL(urilicense.toURL()).toURI();
                 rdf = IOUtils.toString(urilicense, "UTF-8");
             } catch (Exception e2) {
             }
