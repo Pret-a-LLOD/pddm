@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import vroddon.rdf.URLUtils;
 
 /**
- *
- * @author Pablo
+ * @todo testing with the new cors...
+ * @author vroddon, pablo
  */
 @Controller
 @Api(tags = "Authorization", value = "Authorization")

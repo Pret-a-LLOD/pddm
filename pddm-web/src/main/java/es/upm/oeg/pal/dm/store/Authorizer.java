@@ -2,7 +2,9 @@ package es.upm.oeg.pal.dm.store;
 
 import es.upm.oeg.pal.dm.model.DatasetAuthRequest;
 import es.upm.oeg.pal.dm.model.DatasetAuthResponse;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
 import java.util.List;
 import oeg.jodrlapi.helpers.ODRLRDF;
 import oeg.jodrlapi.helpers.RDFUtils;
@@ -60,7 +62,7 @@ public class Authorizer {
                 if (ok==false)
                 {
                     r.setAuthorized(false);
-                    r.setExplanation("Not authorized because of the " + RDFUtils.getLastPartOfUri(constraint.value));
+                    r.setExplanation("Not authorized because of the " + RDFUtils.getLastPartOfUri(constraint.rightOperand));
                 }
             }
         }
@@ -78,7 +80,7 @@ public class Authorizer {
     {
         boolean ok = true;
         System.out.println(c.toString());
-        if (c.value.contains("purpose") && c.rightOperand.contains("languageEngineeringResearch"))
+        if (c.rightOperand.contains("purpose") && c.leftOperand.contains("languageEngineeringResearch"))
         {
             ok = false;
             if (req.getPurpose().contains("research") || req.getPurpose().contains("languageEngineeringResearch"))
@@ -94,7 +96,9 @@ public class Authorizer {
         String rdf = "error";
         try {
             if (paramlicense.contains("rdflicense/")) {
-                urilicense = new URI(paramlicense + ".ttl");
+                if (!paramlicense.contains(".ttl"))
+                    urilicense = new URI(paramlicense + ".ttl");
+                urilicense = getFinalURL(urilicense.toURL()).toURI();
                 rdf = IOUtils.toString(urilicense, "UTF-8");
             } else {
                 paramlicense = "https://raw.githubusercontent.com/Pret-a-LLOD/pddm/develop/data/licenses/" + paramlicense;
@@ -120,4 +124,30 @@ public class Authorizer {
             return rdf;
 
         }
+
+public static URL getFinalURL(URL url) {
+    try {
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setInstanceFollowRedirects(false);
+        con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36");
+        con.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
+        con.addRequestProperty("Referer", "https://www.google.com/");
+        con.connect();
+        //con.getInputStream();
+        int resCode = con.getResponseCode();
+        if (resCode == HttpURLConnection.HTTP_SEE_OTHER
+                || resCode == HttpURLConnection.HTTP_MOVED_PERM
+                || resCode == HttpURLConnection.HTTP_MOVED_TEMP) {
+            String Location = con.getHeaderField("Location");
+            if (Location.startsWith("/")) {
+                Location = url.getProtocol() + "://" + url.getHost() + Location;
+            }
+            return getFinalURL(new URL(Location));
+        }
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+    }
+    return url;
+}
+
 }
